@@ -1,4 +1,4 @@
-module github.com/alexccamargo/where-were-you-all-this-time-api-go
+module github.com/alexccamargo/wwuatt
 
 go 1.12
 
