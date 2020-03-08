@@ -10,7 +10,8 @@ import (
 // InitializeDI initialize dependencies
 func InitializeDI() *services.MovieService {
 	panic(wire.Build(
-		services.GetConnection,
+		services.NewConnection,
 		services.NewMovieService,
 	))
+	return &services.MovieService{}
 }
