@@ -7,13 +7,18 @@ import (
 	"os"
 )
 
-// db is the global database connection pool.
-var db *sql.DB
+// Database describe Database instance
+type Database struct {
+	Db *sql.DB
+}
+
+var database *Database
 
 // GetConnection return a db connection
-func GetConnection() *sql.DB {
+func NewConnection() *Database {
 	var err error
-	if nil == db {
+	if nil == database {
+		var db *sql.DB
 
 		// If the optional DB_TCP_HOST environment variable is set, it contains
 		// the IP address and port number of a TCP connection pool to be created,
@@ -22,17 +27,18 @@ func GetConnection() *sql.DB {
 		if os.Getenv("DB_TCP_HOST") != "" {
 			db, err = initTCPConnectionPool()
 			if err != nil {
-				log.Fatalf("initTcpConnectionPool: unable to connect: %s", err)
+				panic(fmt.Sprintf("initTcpConnectionPool: unable to connect: %s", err))
 			}
 		} else {
 			db, err = initSocketConnectionPool()
 			if err != nil {
-				log.Fatalf("initSocketConnectionPool: unable to connect: %s", err)
+				panic(fmt.Sprintf("initSocketConnectionPool: unable to connect: %s", err))
 			}
 		}
+		database = &Database{Db: db}
 	}
 
-	return db
+	return database
 }
 
 // mustGetEnv is a helper function for getting environment variables.

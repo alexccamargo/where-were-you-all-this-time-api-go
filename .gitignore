@@ -16,3 +16,4 @@ vendor/
 
 app.yaml
 go.sum
+wire_gen.go

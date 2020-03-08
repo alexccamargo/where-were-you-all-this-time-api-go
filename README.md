@@ -20,6 +20,7 @@ Execute ``` go env GOPATH ```
 If it is empty just add a the env var into your ```~/.zshrc``` or ```~/.bashrc``` file.
 ```sh
 export GOPATH=~/my/path/to/code
+export PATH="$GOPATH/bin:$PATH"
 ```
 
 ## GOOGLE CLOUD ENGINE - GKE
