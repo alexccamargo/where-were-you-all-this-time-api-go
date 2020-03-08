@@ -3,4 +3,4 @@ export DB_USER=appuser
 export DB_PASS=password
 export DB_NAME=appdb
 
-go run main.go
+go run .
